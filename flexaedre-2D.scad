@@ -55,16 +55,16 @@ color ("Silver") {
 }
 
 // Optionnel (pour coller l'intérieur)
-color ("LightGrey") {
-
+color ("LightGrey") offset(delta=-1) {
+  
   translate([a,0,0]) 
     rotate(180-Aa-Ca)
     triangle_isocele(b, c);
 
-    rotate(-Ba-Ca-Aa)
+  rotate(-Ba-Ca-Aa)
     triangle_isocele(a, c);
 
-    rotate(-Ba)    
+  rotate(-Ba)    
     translate([b,0,0]) 
     rotate( -(90 +2*Ca -180) )
     triangle_isocele(b, c);
