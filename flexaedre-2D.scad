@@ -70,3 +70,9 @@ color ("LightGrey") offset(delta=-1) {
     triangle_isocele(b, c);
 
 }
+
+color ("Black") {
+  translate([a/2,  Ah/2,0]) text("A", halign="center");
+  translate([a/2, -Bh/2,0]) text("B", halign="center");
+  translate([c/5,  -b/2,0]) text("C", halign="center");
+}
