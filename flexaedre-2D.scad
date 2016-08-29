@@ -19,14 +19,14 @@ function hauteur_triangle_isocele(grand_cote, petit_cote) =
 
 
 // Angles face aux petits cotés
-Aa = acos( (141/2) /  87 );
-Ba = (180-90)/2; // acos( (141/2) / 100 ); 
-Ca = acos( (100/2) /  87 );
+Aa = acos( (a/2) / c );
+Ba = (180-90)/2;      // acos( (a/2) / b ); 
+Ca = acos( (b/2) / c );
 
-Ah = hauteur_triangle_isocele(141, 87);
-Bh = 141/2;     // B a un angle droit!
-echo("Hauteur Bh=", Bh, " = ", hauteur_triangle_isocele(141, 100));
-Ch = hauteur_triangle_isocele(100, 87);
+Ah = hauteur_triangle_isocele(a, c);
+Bh = a/2;     // B a un angle droit!
+echo("Hauteur Bh=", Bh, " = ", hauteur_triangle_isocele(a, b));
+Ch = hauteur_triangle_isocele(b, c);
 
 module triangle(gc, pc) {
  polygon([
@@ -38,36 +38,36 @@ module triangle(gc, pc) {
 
 color ("Silver") {
     
-  triangle(141, 87);
+  triangle(a, c);
 
   rotate(-(180-90)/2) 
-    mirror([0,1,0]) triangle(100, 87);
+    mirror([0,1,0]) triangle(b, c);
  
-  translate([+141/2,0,0])  mirror([1,0,0]) 
-  translate([-141/2,0,0]) 
+  translate([+a/2,0,0])  mirror([1,0,0]) 
+  translate([-a/2,0,0]) 
     rotate(-Ba) 
-    mirror([0,1,0]) triangle(100, 87);
+    mirror([0,1,0]) triangle(b, c);
 
 /* Another solution:
-    translate([141,0,0]) 
-    rotate(Ba) translate([-100,0,0]) 
-    mirror([0,1,0]) triangle(100, 87);
+    translate([a,0,0]) 
+    rotate(Ba) translate([-b,0,0]) 
+    mirror([0,1,0]) triangle(b, c);
 */
 }
 
-
+// Optionnel (pour coller l'intérieur)
 color ("LightGrey") {
 
-  translate([141,0,0]) 
+  translate([a,0,0]) 
     rotate(180-Aa-Ca)
-    triangle(100, 87);
+    triangle(b, c);
 
     rotate(-Ba-Ca-Aa)
-    triangle(141, 87);
+    triangle(a, c);
 
     rotate(-Ba)    
-    translate([100,0,0]) 
-    rotate(-(90+2*Ca -180))
-    triangle(100, 87);
+    translate([b,0,0]) 
+    rotate( -(90 +2*Ca -180) )
+    triangle(b, c);
 
 }
