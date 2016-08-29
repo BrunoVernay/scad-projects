@@ -13,9 +13,8 @@ c = b * sqrt(3)/2;  // 87;
 echo("Taille des cotés: a=",a, " b=",b, " c=",c, "." );
 
 
-function hauteur_triangle_isocele(grand_cote, petit_cote) =
-  // TODO: Utiliser min/max pour eviter les erreurs
-  sqrt( pow(petit_cote, 2) -pow(grand_cote/2, 2) );
+function hauteur_triangle_isocele(base, cote_congru) =
+  sqrt( pow(cote_congru, 2) -pow(base/2, 2) );
 
 
 // Angles face aux petits cotés
@@ -28,30 +27,30 @@ Bh = a/2;     // B a un angle droit!
 echo("Hauteur Bh=", Bh, " = ", hauteur_triangle_isocele(a, b));
 Ch = hauteur_triangle_isocele(b, c);
 
-module triangle(gc, pc) {
+module triangle_isocele(base, cote_congru) {
  polygon([
-    [0,0],
-    [gc,0],
-    [gc/2, hauteur_triangle_isocele(gc,pc)]
+    [0, 0],
+    [base, 0],
+    [base/2, hauteur_triangle_isocele( base, cote_congru)]
     ]);
 };
 
 color ("Silver") {
     
-  triangle(a, c);
+  triangle_isocele(a, c);
 
   rotate(-(180-90)/2) 
-    mirror([0,1,0]) triangle(b, c);
+    mirror([0,1,0]) triangle_isocele(b, c);
  
   translate([+a/2,0,0])  mirror([1,0,0]) 
   translate([-a/2,0,0]) 
     rotate(-Ba) 
-    mirror([0,1,0]) triangle(b, c);
+    mirror([0,1,0]) triangle_isocele(b, c);
 
 /* Another solution:
     translate([a,0,0]) 
     rotate(Ba) translate([-b,0,0]) 
-    mirror([0,1,0]) triangle(b, c);
+    mirror([0,1,0]) triangle_isocele(b, c);
 */
 }
 
@@ -60,14 +59,14 @@ color ("LightGrey") {
 
   translate([a,0,0]) 
     rotate(180-Aa-Ca)
-    triangle(b, c);
+    triangle_isocele(b, c);
 
     rotate(-Ba-Ca-Aa)
-    triangle(a, c);
+    triangle_isocele(a, c);
 
     rotate(-Ba)    
     translate([b,0,0]) 
     rotate( -(90 +2*Ca -180) )
-    triangle(b, c);
+    triangle_isocele(b, c);
 
 }
