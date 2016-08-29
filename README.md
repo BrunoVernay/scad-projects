@@ -1,7 +1,10 @@
 # scad-projects
 My OpenSCAD experimentations, 2D and 3D shapes.
 
-OpenSCAD is a very useful app to create 2D and 3D shapes from textual definitions. You can then export images, SVG for printing  or 3D formats for 3D printers.
+[OpenSCAD](http://www.openscad.org/) is a very useful app to create 2D and 3D shapes from textual definitions. You can then export images, SVG for printing  or 3D formats for 3D printers.
+
+It is way more usable than Inkscape or other drawing tools for some kind of work. **DSL rules!**
+
 
 ## Flexaedre "HyperQBS"
 
